@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>TerrariaLauncher.Commons</RootNamespace>
+    <AssemblyName>TerrariaLauncher.Commons</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.24" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TerrariaLauncher.Commons.Base\TerrariaLauncher.Commons.Base.csproj" />
+  </ItemGroup>
+
+</Project>
