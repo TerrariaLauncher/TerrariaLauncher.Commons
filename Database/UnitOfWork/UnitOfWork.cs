@@ -55,69 +55,6 @@ namespace TerrariaLauncher.Commons.Database
             await this.Transaction.RollbackAsync(cancellationToken);
         }
 
-        public T RunQueryHandler<T>(IQuerySingleHandler<T> queryHandler)
-        {
-            return queryHandler.Handle(this.Connection, this.Transaction);
-        }
-
-        public IEnumerable<T> RunQueryHandler<T>(IQueryHandler<T> queryHandler)
-        {
-            return queryHandler.Handle(this.Connection, this.Transaction);
-        }
-
-        public Task<IEnumerable<T>> RunQueryHandler<T>(IQueryHandlerAsync<T> queryHandler, CancellationToken cancellationToken = default)
-        {
-            return queryHandler.HandleAsync(this.Connection, this.Transaction, cancellationToken);
-        }
-
-        public IAsyncEnumerable<T> RunQueryHandler<T>(IQueryHandlerAsyncEnumerable<T> queryHandler, CancellationToken cancellationToken = default)
-        {
-            return queryHandler.HandleAsync(this.Connection, this.Transaction, cancellationToken);
-        }
-
-        public Task<T> RunQueryHandler<T>(IQuerySingleHandlerAsync<T> queryHandler, CancellationToken cancellationToken = default)
-        {
-            return queryHandler.HandleAsync(this.Connection, this.Transaction, cancellationToken);
-        }
-
-        public void RunCommandHandler(ICommandHandler commandHandler)
-        {
-            if (commandHandler.RequiredTransaction && this.Transaction is null)
-            {
-                throw new InvalidOperationException($"The command handler {commandHandler.GetType()} requires a transaction.");
-            }
-            
-            commandHandler.Handle(this.Connection, this.Transaction);
-        }
-
-        public T RunCommandHandler<T>(ICommandHandler<T> commandHandler)
-        {
-            if (commandHandler.RequiredTransaction && this.Transaction is null)
-            {
-                throw new InvalidOperationException($"The command handler {commandHandler.GetType()} requires a transaction.");
-            }
-
-            return commandHandler.Handle(this.Connection, this.Transaction);
-        }
-
-        public Task RunCommandHandler(ICommandHandlerAsync commandHandler, CancellationToken cancellationToken = default)
-        {
-            if (commandHandler.RequiredTransaction && this.Transaction is null)
-            {
-                throw new InvalidOperationException($"The command handler {commandHandler.GetType()} requires a transaction.");
-            }
-            return commandHandler.Handle(this.Connection, this.Transaction, cancellationToken);
-        }
-
-        public Task<T> RunCommandHandler<T>(ICommandHandlerAsync<T> commandHandler, CancellationToken cancellationToken = default)
-        {
-            if (commandHandler.RequiredTransaction && this.Transaction is null)
-            {
-                throw new InvalidOperationException($"The command handler {commandHandler.GetType()} requires a transaction.");
-            }
-            return commandHandler.Handle(this.Connection, this.Transaction, cancellationToken);
-        }
-
         private bool disposed;
         protected virtual void Dispose(bool disposing)
         {
