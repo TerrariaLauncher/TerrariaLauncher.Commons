@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TerrariaLauncher.Commons.Base\TerrariaLauncher.Commons.Base.csproj" />
+    <ProjectReference Include="References\TerrariaLauncher.Commons.Base\TerrariaLauncher.Commons.Base.csproj" />
   </ItemGroup>
 
 </Project>
